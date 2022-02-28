@@ -68,7 +68,13 @@ pub const AVX_2: usize = 2;
     ),
 ))]
 pub const AVX_2_AND_SSE_42: usize = 3;
-#[cfg(httparse_simd)]
+#[cfg(all(
+    httparse_simd,
+    any(
+        target_arch = "x86",
+        target_arch = "x86_64",
+    ),
+))]
 const NONE: usize = ::core::usize::MAX;
 #[cfg(all(
     httparse_simd,
